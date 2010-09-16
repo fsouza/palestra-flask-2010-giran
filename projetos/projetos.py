@@ -21,5 +21,9 @@ class ProjetoForm(wtf.Form):
     nome = wtf.TextField('Nome', validators=[wtf.Required()])
     descricao = wtf.TextAreaField('Descrição', validators=[wtf.Required()])
 
+@app.route('/novo_projeto')
+def novo_projeto():
+    formulario = ProjetoForm()
+    return render_template('novo_projeto.html', form=formulario)
 
 app.run()
