@@ -1,9 +1,14 @@
-from flask import Flask
+#coding:utf-8
+from flask import Flask, render_template
 from flaskext.sqlalchemy import SQLAlchemy
 from flaskext import wtf
 
 app = Flask(__name__)
+app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+app.config['SECRET_KEY'] = 'HSAOIHs8ashw8JSJ'
+app.config['CSRF_ENABLED'] = True
+app.config['CSRF_SESSION_KEY'] = 'HSAOIHs8ashw8JSJwtforms'
 db = SQLAlchemy(app)
 
 class Projeto(db.Model):
@@ -15,5 +20,6 @@ class Projeto(db.Model):
 class ProjetoForm(wtf.Form):
     nome = wtf.TextField('Nome', validators=[wtf.Required()])
     descricao = wtf.TextAreaField('Descrição', validators=[wtf.Required()])
+
 
 app.run()
