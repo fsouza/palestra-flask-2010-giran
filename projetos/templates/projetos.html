@@ -1,14 +1,13 @@
-<html>
-    <head>
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-        <title>Listagem de projetos</title>
-    </head>
-    <body id="">
-        <h1 id="">Listagem de projetos</h1>
-        <ul>
-            {% for projeto in projetos %}
-                <li>{{ projeto.nome }}</li>
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block titulo %}
+    Listagem de projetos
+{% endblock %}
+
+{% block conteudo%}
+    <h1 id="">Listagem de projetos</h1>
+    <ul>
+        {% for projeto in projetos %}
+            <li>{{ projeto.nome }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
