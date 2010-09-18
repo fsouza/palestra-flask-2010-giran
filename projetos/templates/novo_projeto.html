@@ -18,6 +18,7 @@
     <body id="">
         <h1 id="">Cadastro de novo Projeto</h1>
         <form action="" method="post" accept-charset="utf-8">
+            {{ form.csrf_token }}
             {{ render_field(form.nome) }}
             {{ render_field(form.descricao) }}
             <p><input type="submit" value="Cadastrar"/></p>
