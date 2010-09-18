@@ -18,8 +18,8 @@ class Projeto(db.Model):
     descricao = db.Column(db.Text, nullable = False)
 
 class ProjetoForm(wtf.Form):
-    nome = wtf.TextField('Nome', validators=[wtf.Required()])
-    descricao = wtf.TextAreaField('Descrição', validators=[wtf.Required()])
+    nome = wtf.TextField(u'Nome', validators=[wtf.Required()])
+    descricao = wtf.TextAreaField(u'Descrição', validators=[wtf.Required()])
 
 @app.route('/novo_projeto')
 def novo_projeto():
