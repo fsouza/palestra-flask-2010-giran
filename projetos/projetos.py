@@ -1,11 +1,11 @@
 #coding:utf-8
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flaskext.sqlalchemy import SQLAlchemy
 from flaskext import wtf
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///dados.sqlite3'
 app.config['SECRET_KEY'] = 'HSAOIHs8ashw8JSJ'
 app.config['CSRF_ENABLED'] = True
 app.config['CSRF_SESSION_KEY'] = 'HSAOIHs8ashw8JSJwtforms'
@@ -24,6 +24,15 @@ class ProjetoForm(wtf.Form):
 @app.route('/novo_projeto', methods=['GET', 'POST'])
 def novo_projeto():
     formulario = ProjetoForm()
+    if formulario.validate_on_submit():
+        projeto = Projeto()
+        projeto.nome = formulario.nome.data
+        projeto.descricao = formulario.descricao.data
+        db.session.add(projeto)
+        db.session.commit()
+        return redirect(url_for('listar_projetos'))
     return render_template('novo_projeto.html', form=formulario)
 
-app.run()
+if __name__ == '__main__':
+    db.create_all()
+    app.run()
