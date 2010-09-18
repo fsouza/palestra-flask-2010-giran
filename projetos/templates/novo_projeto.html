@@ -1,27 +1,14 @@
-{% macro render_field(field) %}
-    <p><label for="{{ field.id }}">{{ field.label }}:<br />
-    {{ field(**kwargs)|safe }}
-    {% if field.errors %}
-        <ul class="errors">
-            {% for error in field.errors %}
-                <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    </p>
-{% endmacro %}
-<html>
-    <head>
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-        <title>Novo projeto</title>
-    </head>
-    <body id="">
-        <h1 id="">Cadastro de novo Projeto</h1>
-        <form action="" method="post" accept-charset="utf-8">
-            {{ form.hidden_tag() }}
-            {{ render_field(form.nome) }}
-            {{ render_field(form.descricao) }}
-            <p><input type="submit" value="Cadastrar"/></p>
-        </form>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block titulo %}
+    Cadastro de novo Projeto
+{% endblock %}
+
+{% block conteudo%}
+    <h1 id="">Cadastro de novo Projeto</h1>
+    <form action="" method="post" accept-charset="utf-8">
+        {{ form.hidden_tag() }}
+        {{ render_field(form.nome) }}
+        {{ render_field(form.descricao) }}
+        <p><input type="submit" value="Cadastrar"/></p>
+    </form>
+{% endblock %}
