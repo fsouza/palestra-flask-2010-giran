@@ -33,6 +33,11 @@ def novo_projeto():
         return redirect(url_for('listar_projetos'))
     return render_template('novo_projeto.html', form=formulario)
 
+@app.route('/projetos')
+def listar_projetos():
+    projetos = Projeto.query.all()
+    return render_template('projetos.html', projetos=projetos)
+
 if __name__ == '__main__':
     db.create_all()
     app.run()
